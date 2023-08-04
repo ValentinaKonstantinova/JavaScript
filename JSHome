@@ -12,11 +12,13 @@ let summ = int1 + int2;
 let ruzn = int2 - int1;
 let proiz = int1 * int2;
 let div = int2 / int1;
+let stepen = int1 ** int2;
 
 console.log ("Сумма int1 и int2 =", summ);
 console.log("Разность int2 и int1 =", ruzn);
 console.log("Произведение int1 и int2 =", proiz);
 console.log("Частное int2 и int1 =", div);
+console.log("Частное int1 в сетпени int2 =", stepen);
 
 let strs = "Несколько простых слов";
 let arrStrings = strs.split(" ");
