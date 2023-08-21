@@ -1,0 +1,23 @@
+html, body{
+    height: 100%;
+}
+.form{
+    height: calc(100% - 200px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+.form_block{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 400px;
+    margin: 5px 0;
+}
+.form_block_error{
+    color: red;
+    font-weight: bold;
+    justify-content: center;
+}

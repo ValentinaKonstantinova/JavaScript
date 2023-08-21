@@ -5,14 +5,30 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Генератор паролей</title>
+    <link href="./style.css" rel="stylesheet" />
+    <title>Форма регистрации</title>
 </head>
 <body>
-<lable>Количество символов</lable>
-<input type="number" id="num_let">
 
-<button onclick="vuewPass()">Сгенерировать пароль</button>
-<div id="gen_pass"></div>
-<script src="./JSHome.js"></script>
+<form class="form" onsubmit="return false;">
+    <h1>Форма регистрации</h1>
+    <div class="form_block form_block_email">
+        <label for="email">Введите email</label>
+        <input type="email" id="email" placeholder="example@mail.ru">
+    </div>
+    <div class="form_block form_block_pass">
+        <label for="email">Введите пароль</label>
+        <input type="password" id="pass1" placeholder="******">
+    </div>
+    <div class="form_block form_block_pass">
+        <label for="email">Введите подтверждение пароля</label>
+        <input type="password" id="pass2" placeholder="******">
+    </div>
+    <div id="form_block_error" class="form_block form_block_error">
+
+    </div>
+    <button type="submit" onclick="reg()">Зарегистрироваться</button>
+</form>
+<script src="./script.js"></script>
 </body>
 </html>
