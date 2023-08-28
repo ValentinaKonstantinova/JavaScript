@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Промисы</title>
+</head>
+<body>
+
+<h2>Промисы</h2>
+<label from="text">Текст</label>
+<input id="text" type="text">
+<label from="time">Время задержки мс.</label>
+<input id="time" type="number">
+<button onclick="start()">Вывести текст</button><br/>
+<button onclick="fakeData()">Получить данные</button>
+<p id="out"></p>
+    <script>
+
+        function start() {
+            let text = document.getElementById('text').value;
+            let time = document.getElementById('time').value;
+            dalayedPrint(text, time).then(result =>{
+                document.getElementById('out').innerText = result;
+            });
+        }
+        function dalayedPrint(text, time) {
+            return new Promise(
+                resolve => {
+                    setTimeout(()=>{resolve(text);},time);
+                },
+                reject=>{
+                    reject(false)
+                }
+            );
+        }
+        let data = {
+            "user_name":"Ivan",
+            "user_age":19,
+        }
+        function fakeData(){
+            document.getElementById('out').innerText = "Начинаю загрузку данных...";
+            dalayedPrint(fetchData(data), 2000).then(result =>{
+                document.getElementById('out').innerText = "Имя - "+result.user_name+ "   Возраст - "+result.user_age;
+            });
+        }
+        function fetchData(obj){
+            return obj;
+        }
+
+    </script>
+</body>
+</html>
