@@ -1,34 +1,51 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="./style.css" rel="stylesheet" />
-    <title>Форма регистрации</title>
+    <title>ДЗ Фибоначчи и Степень</title>
 </head>
 <body>
-
-<form class="form" onsubmit="return false;">
-    <h1>Форма регистрации</h1>
-    <div class="form_block form_block_email">
-        <label for="email">Введите email</label>
-        <input type="email" id="email" placeholder="example@mail.ru">
-    </div>
-    <div class="form_block form_block_pass">
-        <label for="email">Введите пароль</label>
-        <input type="password" id="pass1" placeholder="******">
-    </div>
-    <div class="form_block form_block_pass">
-        <label for="email">Введите подтверждение пароля</label>
-        <input type="password" id="pass2" placeholder="******">
-    </div>
-    <div id="form_block_error" class="form_block form_block_error">
-
-    </div>
-    <button type="submit" onclick="reg()">Зарегистрироваться</button>
-</form>
-<script src="./script.js"></script>
+<h1>Фибоначчи</h1>
+    <label from="fib">Введите число для подсчета</label>
+    <input id="fib" type="number" max="80">
+    <button onclick="fibCalc()">Расчитать</button>
+    <p>Вывод - </p><p id="out"></p>
+<h2>Возведение в степерь</h2>
+<label from="step_n">Введите число</label>
+<input id="step_n" type="number">
+<label from="step_s">Введите степень</label>
+<input id="step_s" type="number">
+<button onclick="stepenCalc()">Расчитать</button>
+<p>Вывод - </p><p id="out_st"></p>
+    <script>
+        function fibCalc() {
+            let num = document.getElementById('fib').value;
+            let res = fib(num);
+            document.getElementById('out').innerText = res;
+        }
+        function fib(num) {
+            if(num <= 1){
+                return num;
+            }else{
+                return  fib(num - 1) + fib(num - 2);
+            }
+        }
+        function stepenCalc() {
+            let num = document.getElementById('step_n').value;
+            let st = document.getElementById('step_s').value;
+            let res = stepen(num, st);
+            document.getElementById('out_st').innerText = res;
+        }
+        function stepen(x, n) {
+            if (n != 1) { // пока n != 1, сводить вычисление stepen(x,n) к stepen(x,n-1)
+                return x * stepen(x, n - 1);
+            } else {
+                return x;
+            }
+        }
+    </script>
 </body>
 </html>
