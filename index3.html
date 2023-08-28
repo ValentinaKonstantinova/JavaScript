@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Event loop, async/await</title>
+</head>
+<body>
+
+<h2>Event loop, async/await</h2>
+<button onclick="fakeData()">Получить данные</button>
+<p id="out"></p>
+    <script>
+        async function dalayedPrint(text, time) {
+            return await new Promise((resolve, reject) => {
+                setTimeout(() => resolve(text),time);
+            });
+        }
+        let data = {
+            "user_name":"Ivan",
+            "user_age":19,
+        }
+        async function fakeData(){
+            document.getElementById('out').innerText = "Загрузка данных...";
+            let res = await dalayedPrint(fetchData(data), 2000);
+            document.getElementById('out').innerText = "Имя - "+res.user_name+ "   Возраст - "+res.user_age;
+
+        }
+        function fetchData(obj){
+            return obj;
+        }
+
+    </script>
+</body>
+</html>
