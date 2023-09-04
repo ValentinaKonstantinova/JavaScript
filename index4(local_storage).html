@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Local Storage</title>
+    <style>
+        html,body,form{
+            height: 100%;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        label{
+            margin: 5px 0 0 0;
+        }
+        input{
+            margin: 2px 0 5px 0;
+        }
+        button{
+            margin: 5px auto;
+        }
+        #error_msg{
+            text-align: center;
+            color: darkred;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<form action="#" method="post" onsubmit="save_data()">
+    <div id="error_msg"></div>
+    <label for="f_name">Введите имя</label>
+    <input type="text" name="f_name" id="f_name" placeholder="Имя">
+    <label for="l_name">Введите фамилию</label>
+    <input type="text" name="l_name" id="l_name" placeholder="Фамилия">
+    <button type="submit">Сохранить</button>
+    <button onclick="rem_data()">Удалить мои данные</button>
+</form>
+<script>
+document.addEventListener("DOMContentLoaded", ()=>{
+    let user_data = localStorage.getItem("user_data");
+    if(user_data){
+        user_data = JSON.parse(user_data);
+        document.getElementById('f_name').value = user_data.f_name;
+        document.getElementById('l_name').value = user_data.l_name;
+    }
+});
+function save_data(){
+    event.preventDefault();
+    let err = false;
+    let user_data = {
+        "f_name" : document.getElementById('f_name').value,
+        "l_name" : document.getElementById('l_name').value,
+    }
+    if(user_data.f_name.length < 2){
+        document.getElementById("error_msg").innerText = "Поле Имя не должно быть пустым";
+        err = true;
+    }
+    if(user_data.l_name.length < 2){
+        document.getElementById("error_msg").innerText = "Поле Фамилия не должно быть пустым";
+        err = true;
+    }
+    if(!err){
+        localStorage.setItem("user_data", JSON.stringify(user_data));
+        alert("Данные сохранены!")
+    }
+    return false;
+}
+function rem_data(){
+    console.log("Удаление данных");
+    localStorage.removeItem('user_data');
+    document.getElementById('f_name').value = "",
+    document.getElementById('l_name').value = "",
+    alert("Данные удалены!");
+    setTimeout(()=>{location.reload();},1000);
+}
+</script>
+</body>
+</html>
